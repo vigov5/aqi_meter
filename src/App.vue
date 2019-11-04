@@ -76,12 +76,13 @@
             <div
               v-for="(item, index) in last_aqis"
               v-bind:key="index"
+              class="ml-1"
             >
-              <span class="text-xs">
+              <div class="text-xs text-center w-full">
                 {{ item.aqi }}
-              </span>
+              </div>
               <div
-                v-bind:class="['w-6 ml-1', leftClasses[item.level]]"
+                v-bind:class="['w-6', leftClasses[item.level]]"
                 v-bind:style="{height: item.aqi/300*128 + 'px' }"
               >
               </div>

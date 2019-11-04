@@ -1,5 +1,9 @@
 # aqi_meter
 
+## Blog
+
+[https://viblo.asia/p/tu-do-chi-so-o-nhiem-khong-khi-tai-nha-voi-sensor-va-raspberry-pi-YWOZrBBvZQ0](https://viblo.asia/p/tu-do-chi-so-o-nhiem-khong-khi-tai-nha-voi-sensor-va-raspberry-pi-YWOZrBBvZQ0)
+
 ## Project setup
 ```
 yarn install

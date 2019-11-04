@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+  influxdb:
+    image: influxdb
+    environment:
+      - INFLUXDB_ADMIN_USER=root
+      - INFLUXDB_ADMIN_PASSWORD=root_password
+      - INFLUXDB_DB=aqi_mesurement
+      - INFLUXDB_USER=sensor
+      - INFLUXDB_USER_PASSWORD=sensor_password
+    volumes:
+      - ./db:/var/lib/influxdb
+    ports:
+      - 8086:8086

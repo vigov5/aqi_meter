@@ -105,12 +105,12 @@ export default {
   name: 'app',
   data () {
     return {
-      place: process.env.VUE_APP_PLACE,
-      location: process.env.VUE_APP_LOCATION,
+      place: process.env.VUE_APP_PLACE || 'Unknown',
+      location: process.env.VUE_APP_LOCATION || 'Middle of Nowhere, Milky Way',
       aqi: 0,
       pm25: 0,
       pm10: 0,
-      time: '',
+      time: new Date().toString(),
       timer: '',
       levels: [50, 100, 150, 200, 300],
       last_aqis: [],
@@ -142,11 +142,15 @@ export default {
           this.aqi = row.aqi
           this.pm25 = row.pm25
           this.pm10 = row.pm10
-          this.time = new Date(row.time.toISOString().replace('Z', '+0700'))
+          this.time = row.time.toString()
           // console.log(`AQI: ${row.aqi}, PM2.5: ${row.pm25}µg/m3, PM10: ${row.pm10}µg/m3`)
         })
       })
-      influx.query(`SELECT mean("aqi") FROM "aqi" WHERE time >= now() - 12h GROUP BY time(1h) fill(none) LIMIT 12`).then(rows => {
+
+      let endRange = new Date()
+      let startRange = new Date()
+      startRange.setHours(startRange.getHours() - 12)
+      influx.query(`SELECT mean(aqi) FROM aqi WHERE time >= '${startRange.toISOString()}' AND time < '${endRange.toISOString()}' GROUP BY time(1h) fill(none) LIMIT 12`).then(rows => {
         let tmp = []
         rows.forEach((row, index) => {
           let aqi = row.mean.toFixed(0)

@@ -37,7 +37,7 @@ if __name__ == '__main__':
     ]))
     print('Result: AQI: {}, PM2.5: {}, PM10: {}'.format(aqi, pm25, pm10))
 
-    now = datetime.datetime.now().replace(microsecond=0).isoformat()
+    now = datetime.datetime.utcnow().replace(microsecond=0).isoformat()
     json_body = [
         {
             'measurement': 'aqi',

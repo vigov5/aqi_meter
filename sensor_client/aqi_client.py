@@ -26,7 +26,7 @@ def mesure():
     print('Sleep device...')
     sensor.sleep()  # Turn off fan and diode
 
-    return result if result else (0, 0)
+    return result if result else (0.0, 0.0)
 
 
 if __name__ == '__main__':
